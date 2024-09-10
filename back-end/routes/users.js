@@ -7,5 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/login', userController.loginUser);
+router.post('/novoUsuario', userController.novoUsuario);
+
 
 module.exports = router;
