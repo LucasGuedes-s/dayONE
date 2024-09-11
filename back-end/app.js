@@ -12,8 +12,8 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-const firstRun = require('./firstRun.util.js');
-firstRun.CadastrarUsers(); 
+/*const firstRun = require('./firstRun.util.js');
+firstRun.CadastrarUsers(); */
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -37,5 +37,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+require("./database/acompanhante.mongo")
 
 module.exports = app;
