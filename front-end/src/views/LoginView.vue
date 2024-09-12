@@ -46,12 +46,12 @@ h1 {
 
 
 .day {
-    color: #E0E1DD; /* Cor branca para "Day" */
+    color: #E0E1DD; 
 }
 
 
 .one {
-    color: #9d4edd; /* Cor azul para "One" (você pode alterar para a cor desejada) */
+    color: #9d4edd; 
 }
 
 
