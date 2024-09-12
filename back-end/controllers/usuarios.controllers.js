@@ -4,6 +4,7 @@ const pool = require('../database/user.postress'); // O arquivo onde configurou 
 async function loginUser(req, res, next){
     try {
         const email = req.body.usuario.email
+        console.log(req.body)
         const user = await pool.query(`SELECT * FROM usuario WHERE email = '${email}'`);
         console.log(user.rows)
 
@@ -13,6 +14,7 @@ async function loginUser(req, res, next){
         console.log(req.body.usuario.senha, user.rows[0].senha)
         const validar_senha = bcrypt.compare(req.body.usuario.senha, user.rows[0].senha);
         if(validar_senha){
+            console.log('logado com sucesso')
             res.status(200).json('Usuário logado com sucesso');
             next()
         }

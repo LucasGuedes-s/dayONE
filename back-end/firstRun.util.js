@@ -21,7 +21,7 @@ async function CadastrarUsers() {
             TRUE                     
         ); `);
     } catch{
-        console.log('Usuário: usuariopadrao@gmail.com - já cadastrado')
+        console.log('Usuário: usuario@gmail.com - já cadastrado')
     }
 
 }
