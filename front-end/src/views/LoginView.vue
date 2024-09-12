@@ -182,4 +182,35 @@ h2 {
 
 <script>
 import router from '@/router';
+import Swal from 'sweetalert2'
+import axios from 'axios';
+
+export default {
+    name:'LoginView',
+    data(){
+        return{
+            email:'',
+            senha:'',
+        }
+    },
+methods:{
+    async login(){
+        await axios.post("http://localhost:3000/user/login", {
+            usuario:{
+                email:this.email,
+                senha:this.senha
+            }
+        }).then(response =>{
+                router.push('/dashboard')
+        }).catch(Error =>{
+                console.error(Error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Usuário ou senhas incorretos',
+                    timer: 4000,
+                })
+            })
+        }
+    }
+}
 </script>
