@@ -2,7 +2,7 @@
     <div class="container_login">
         <div class="esquerda_login"> </div>
         <div class="direita_login">
-            <h1><span class="day">Day</span><span class="one">One</span></h1>
+            <h1><span class="day">DAY</span><span class="one">ONE</span></h1>
             <form class="login_form" @submit.prevent="login">
                 <h2>Realizar Login</h2>
                 <label for="email">E-mail</label>
