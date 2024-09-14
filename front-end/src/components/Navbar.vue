@@ -1,0 +1,103 @@
+<template>
+    <header>
+    <nav class="navbar">
+      <div class="logo">
+        <h1><span class="day">Day</span><span class="one">One</span></h1>
+    </div>
+      <ul class="nav-links">
+        <li><a href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+            <path
+              d="M6.555 1.375 0 2.237v5.45h6.555zM0 13.795l6.555.933V8.313H0zm7.278-5.4.026 6.378L16 16V8.395zM16 0 7.33 1.244v6.414H16z" />
+          </svg>
+          Dashboard
+        </a></li>
+        <li><a href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+            <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z"/>
+            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708"/>
+          </svg>
+          Registrar Progresso
+        </a></li>
+        <li><a href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5m8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
+          </svg>
+          Livros
+        </a></li>
+      </ul>
+      <div class="botoes_navbar">
+        <a href="#" class="btn">Alterar Dados</a>
+        <a href="#" class="btn">Sair</a>
+      </div>
+    </nav>
+  </header>
+</template>
+
+<style>
+header {
+    background-color: #180047;
+    box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.10);
+    padding: 5px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+}
+
+.logo a {
+    font-size: 24px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.day {
+    color: #E0E1DD;
+}
+
+.one {
+    color: #9d4edd;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.nav-links li a:hover {
+    background-color: #3c096c;
+}
+
+.botoes_navbar {
+    display: flex;
+    gap: 16px;
+}
+
+.btn {
+    color: #fff;
+    border: 1px solid #5a189a;
+    font-size: 16px;
+    padding: 6px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #5a189a;
+}
+</style>
