@@ -7,6 +7,8 @@ const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var acompanhantesRouter = require('./routes/acompanhantes');
+
 
 var app = express();
 
@@ -32,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/usuario', usersRouter);
+app.use('/acompanhantes', acompanhantesRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
@@ -45,7 +48,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-require("./database/acompanhante.mongo")
 
 module.exports = app;
