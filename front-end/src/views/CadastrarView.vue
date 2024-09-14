@@ -2,7 +2,7 @@
     <div class="container_cadastro">
         <div class="esquerda_cadastro"></div>
         <div class="direita_cadastro">
-            <h1><span class="day">DAY</span><span class="one">ONE</span></h1>
+            <h1><span class="day">Day</span><span class="one">One</span></h1>
             <form class="cadastro_form">
                 <h2>Realizar Cadastro</h2>
                 <label for="nome_completo">Nome Completo</label>
