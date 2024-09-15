@@ -1,11 +1,12 @@
 <template>
     <Navbar />
     <div class="container_usuario">
-        <div class="usuario_info">
-            <img src="" alt="Imagem do Usuário" class="usuario_imagem">
+        <div class="usuario_info"  v-for="usuario in dados.usuario" :key="usuario">
+            <img :src="usuario.foto" alt="Imagem do Usuário" class="usuario_imagem">
             <div class="usuario_detalhes">
-                <h2 class="usuario_nome">Nome do Usuário</h2>
-                <p class="usuario_data">Data de Entrada:</p>
+                <h2 class="usuario_nome">Nome do Usuário: {{ usuario.nome }}</h2>
+                <h2 class="usuario_email">E-mail: {{ usuario.email }}</h2>
+                <p class="usuario_data">Data de Entrada: {{ usuario.data_entrada }}</p>
                 <button class="btn_emergencia">Emergência</button>
             </div>
         </div>
@@ -87,8 +88,7 @@ body {
     margin: 3rem auto;
     padding: 2rem;
     border-radius: 10px;
-    background-color: #110033;
-    border: 1px solid #5a189a;
+    background-color: #3c096c;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     color: white;
 }
@@ -103,5 +103,14 @@ export default {
         Navbar,
         Grafico
     },
+    data(){
+        return{
+            dados: []
+        }
+    },
+    mounted(){
+        this.dados = JSON.parse(localStorage.getItem('dados'));
+        console.log(JSON.parse(localStorage.getItem('dados')))
+    }
 }
 </script>
