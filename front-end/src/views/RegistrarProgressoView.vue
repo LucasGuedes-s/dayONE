@@ -2,14 +2,14 @@
     <Navbar />
     <div class="form-container">
         <h2>Registrar Progresso</h2>
-        <form>
+        <form @submit.prevent="progresso">
             <div class="form-group">
                 <label for="data">Data</label>
                 <input type="date" id="data" name="data">
             </div>
             <div class="form-group">
                 <label for="humor">Como você está se sentindo hoje?</label>
-                <select id="humor" name="humor">
+                <select id="humor" name="humor" v-model="vicio_feedback">
                     <option value="feliz">Feliz</option>
                     <option value="triste">Triste</option>
                     <option value="ansioso">Ansioso</option>
@@ -21,7 +21,7 @@
             
             <div class="form-group" id="evitarvicio">
                 <label for="sucesso">Conseguiu evitar o seu vício?</label>
-                <select id="sucesso" name="sucesso">
+                <select id="sucesso" name="sucesso" v-model="status">
                     <option value="sim">Sim</option>
                     <option value="nao">Não</option>
                     <option value="parcialmente">Parcialmente</option>
@@ -29,15 +29,15 @@
             </div>
             <div class="form-group">
                 <label for="atividades">Quais atividades você realizou?</label>
-                <textarea id="atividades" name="atividades" rows="4" placeholder="Descreva as atividades realizadas hoje..."></textarea>
+                <textarea id="atividades" name="atividades" rows="4" placeholder="Descreva as atividades realizadas hoje..." v-model="atividades_paciente"></textarea>
             </div>
             <div class="form-group">
                 <label for="desafios">Você enfrentou algum desafio?</label>
-                <textarea id="desafios" name="desafios" rows="4" placeholder="Descreva os desafios que enfrentou hoje..."></textarea>
+                <textarea id="desafios" name="desafios" rows="4" placeholder="Descreva os desafios que enfrentou hoje..." v-model="desafios_paciente"></textarea>
             </div>
             <div class="form-group" id="mensagem">
                 <label for="mensagem">Mensagem para você mesmo</label>
-                <textarea id="mensagem" name="mensagem" rows="4" placeholder="Deixe uma mensagem positiva ou reflexiva para você mesmo..."></textarea>
+                <textarea id="mensagem" name="mensagem" rows="4" placeholder="Deixe uma mensagem positiva ou reflexiva para você mesmo..." v-model="mensagem_usuario"></textarea>
             </div>
             <button type="submit" class="btn_registrar">Registrar</button>
         </form>
@@ -121,7 +121,6 @@ form {
 </style>
 
 <script>
-import Swal from 'sweetalert2'
 import axios from 'axios';
 import Navbar from '@/components/Navbar.vue';
 
@@ -130,5 +129,35 @@ export default {
     components: {
         Navbar
     },
+    data() {
+        return {
+            email:'',
+            id_dependencia:'',
+            status:'',
+            atividades_paciente:'',
+            desafios_paciente:'',
+            vicio_feedback:'',
+            mensagem_usuario:''
+        }
+    },
+methods:{
+    async progresso(){
+        await axios.post("http://localhost:3000/usuario/registro", {
+            usuario:{
+                email:this.email,
+                id_dependencia:this.id_dependencia,
+                status:this.status,
+                atividades_paciente:this.atividades_paciente,
+                desafios_paciente:this.desafios_paciente,
+                vicio_feedback:this.vicio_feedback,
+                mensagem_usuario:this.mensagem_usuario
+            }
+        }).then(response =>{
+            console.log(response.status)
+            console.log(response)
+            router.push('/dashboard')
+        })
+        }
+    }
 }
 </script>
