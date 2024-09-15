@@ -28,7 +28,7 @@
 
             <div class="form-group" id="metas">
                 <label for="metas">Quais as suas metas?</label>
-                <textarea id="metas" name="mensagem" rows="2"></textarea>
+                <textarea id="metas" name="mensagem" rows="1"></textarea>
             </div>
 
             <div class="form-group">
