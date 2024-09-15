@@ -10,5 +10,4 @@ mongoose.connect(url, {})
         console.log("Erro ao Conectar", error);
     });
 
-
 module.exports = mongoose;

@@ -1,4 +1,5 @@
 const bcrypt = require('../utils/bcrypt.ultil');
+const pool = require('../database/acompanhante.mongo'); 
 const mongoose = require('mongoose');
 
 const db = mongoose.connection;
@@ -6,7 +7,7 @@ const db = mongoose.connection;
 async function loginAcompanhante(req, res, next) {
     try {
         const email = req.body.acompanhante.email;
-        const collection = db.collection('acompanhantes'); //nome do banco de dados
+        const collection = db.collection('acompanhantes');
         const acomp = await collection.findOne({ email: email });
 
         if (!acomp) {
@@ -26,13 +27,30 @@ async function loginAcompanhante(req, res, next) {
         res.status(500).json({ message: 'Erro ao realizar login' });
     }
 }
+async function getAcompanhante(req, res, next){
+    try{
+        const email = req.params.email; //email vem dos paramtros da url
+        const collection = db.collection('acompanhantes')
+        const acomp = await collection.findOne({email: email});
+
+        if(!acomp){
+            console.error('Acompanhante não encontrado');
+            return res.status(404).json({message: 'Acompanhante não encontrado'})
+        }
+        res.status(200).json({acompanhante: acomp});
+    }catch (error){
+        console.error('Erro ao buscar acompanhante', error);
+        res.status(500).json({message: 'Erro ao buscar acompanhante'});
+    }
+}
 
 async function novoAcompanhante(req, res, next) {
     try {
         const { nome, email, senha } = req.body.acompanhante;
 
         const collection = db.collection('acompanhantes');
-        
+
+        // Verifica se o email já esta cadrastrado
         const acompanhanteExist = await collection.findOne({ email: email });
         if (acompanhanteExist) {
             return res.status(400).json({ message: 'Email já está em uso.' });
@@ -40,6 +58,7 @@ async function novoAcompanhante(req, res, next) {
 
         const senhaHash = await bcrypt.hash(senha, 10);
 
+        // inserir novo acompanhante na tabela(coleção)
         const novo_Acompanhante = await collection.insertOne({
             nome,
             email,
@@ -53,4 +72,4 @@ async function novoAcompanhante(req, res, next) {
     }
 }
 
-module.exports = { loginAcompanhante, novoAcompanhante };
+module.exports = { loginAcompanhante, getAcompanhante, novoAcompanhante }; 
