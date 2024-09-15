@@ -2,7 +2,7 @@
     <Navbar />
     <div class="container_usuario">
         <div class="usuario_info"  v-for="usuario in dados.usuario" :key="usuario">
-            <img :src="usuario.foto" alt="Imagem do Usuário" class="usuario_imagem">
+            <img src="https://firebasestorage.googleapis.com/v0/b/clinica-maria-luiza.appspot.com/o/uploads%2Ffuncionarios2.svg?alt=media&token=cc7511c0-9e76-4cd6-9e33-891bbb3cfd1c" alt="Imagem do Usuário" class="usuario_imagem">
             <div class="usuario_detalhes">
                 <h2 class="usuario_nome">Nome do Usuário: {{ usuario.nome }}</h2>
                 <h2 class="usuario_email">E-mail: {{ usuario.email }}</h2>
@@ -12,8 +12,16 @@
         </div>
       </div>
       <div class="container_grafico">
-        <Grafico />
+        <div> 
+            <h1>Conseguiu evitar o seu vício?</h1>
+            <Grafico />
+        </div>
+        <div>
+            <h1>Como você está se sentindo?</h1>
+            <GraficoLinhas />
+        </div>
       </div>
+
 </template>
 
 <style>
@@ -22,6 +30,11 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
+}
+h1{
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
 }
 .container_usuario{
     width: 50%;
@@ -84,6 +97,8 @@ body {
     background-color: red;
 }
 .container_grafico{
+    display: flex;
+    justify-content: space-around;
     width: 90%;
     margin: 3rem auto;
     padding: 2rem;
@@ -97,11 +112,13 @@ body {
 <script>
 import Navbar from '@/components/Navbar.vue';
 import Grafico from '@/components/Grafico.vue';
+import GraficoLinhas from '@/components/GraficoLinhas.vue'
 export default {
     name: 'dashboard',
     components: {
         Navbar,
-        Grafico
+        Grafico,
+        GraficoLinhas
     },
     data(){
         return{
