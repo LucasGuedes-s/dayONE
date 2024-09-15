@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import router from '@/router';
+</script>
+
 <template>
     <header>
     <nav class="navbar">
@@ -5,21 +9,21 @@
         <h1><span class="day">Day</span><span class="one">One</span></h1>
     </div>
       <ul class="nav-links">
-        <li><a href="#">
+        <router-link to="/dashboard">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
             <path
               d="M6.555 1.375 0 2.237v5.45h6.555zM0 13.795l6.555.933V8.313H0zm7.278-5.4.026 6.378L16 16V8.395zM16 0 7.33 1.244v6.414H16z" />
           </svg>
           Dashboard
-        </a></li>
-        <li><a href="#">
+        </router-link>
+        <router-link to="/progresso">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
             <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z"/>
             <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708"/>
           </svg>
           Registrar Progresso
-        </a></li>
-        <li><a href="#">
+        </router-link>
+        <router-link to="/podcasts">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-music-note-list" viewBox="0 0 16 16">
               <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2"/>
               <path fill-rule="evenodd" d="M12 3v10h-1V3z"/>
@@ -27,7 +31,7 @@
               <path fill-rule="evenodd" d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5"/>
             </svg>
           Podcasts
-        </a></li>
+        </router-link>
       </ul>
       <div class="botoes_navbar">
         <a href="#" class="btn">Alterar Dados</a>
@@ -74,7 +78,7 @@ header {
     margin: 0;
 }
 
-.nav-links li a {
+.navbar a {
     color: #fff;
     text-decoration: none;
     font-size: 16px;
@@ -82,7 +86,7 @@ header {
     border-radius: 4px;
 }
 
-.nav-links li a:hover {
+.navbar li a:hover {
     background-color: #3c096c;
 }
 
