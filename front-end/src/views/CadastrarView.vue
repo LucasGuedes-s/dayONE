@@ -2,7 +2,6 @@
     <div class="container_cadastro">
         <div class="esquerda_cadastro"></div>
         <div class="direita_cadastro">
-            <h1><span class="day">Day</span><span class="one">One</span></h1>
             <form class="cadastro_form">
                 <h2>Realizar Cadastro</h2>
                 <label for="nome_completo">Nome Completo</label>
@@ -19,6 +18,8 @@
                 <input type="text" name="email" placeholder="Digite o seu e-mail">
                 <label for="senha">Senha</label>
                 <input type="password" name="senha" placeholder="Digite a sua senha">
+                <label for="imagem">Adicionar Imagem:</label>
+                <input type="file" id="imagem" name="imagem">
                 <button type="submit" class="btn_cadastrar">Cadastar-se</button>
             </form>
         </div>
@@ -36,7 +37,6 @@ body {
     background-color: #110033;
 }
 
-
 .container_cadastro {
     width: 100vw;
     height: 100vh;
@@ -44,25 +44,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-
-h1 {
-    font-size: 70px;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 15px;
-}
-
-
-.day {
-    color: #E0E1DD; 
-}
-
-
-.one {
-    color: #9d4edd; 
-}
-
 
 h2 {
     color: #E0E1DD;
