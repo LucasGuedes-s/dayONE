@@ -1,7 +1,7 @@
 <template>
     <Navbar  />
     <main class="container_podcasts">
-        <h1>Podcasts:</h1>
+        <h2>Podcasts:</h2>
         <section class="podcast-list">
             <div class="podcast-item" v-for="link in links" :key="link.id">
                 <iframe style="border-radius:12px" :src="link.link" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>            

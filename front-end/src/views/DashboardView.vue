@@ -87,7 +87,8 @@ body {
     margin: 3rem auto;
     padding: 2rem;
     border-radius: 10px;
-    background-color: #3c096c;
+    background-color: #110033;
+    border: 1px solid #5a189a;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     color: white;
 }
