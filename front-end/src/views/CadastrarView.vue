@@ -3,16 +3,21 @@
         <h1>Realizar Cadastro</h1>
         <form>
             <div class="form-group">
-                <label for="nome_completo">Nome Completo</label>
-                <input type="text" name="nome_completo" placeholder="Digite o seu nome completo">
+                <label for="nome">Nome Completo</label>
+                <input type="text" name="nome" placeholder="Digite o seu nome completo" v-model="nome">
             </div>
 
             <div class="form-group">
                 <label for="">Gênero</label>
-                <select name="genero" id="genero">
+                <select name="genero" id="genero"  v-model="genero">
                     <option value="homem">Homem</option>
                     <option value="mulher">Mulher</option>
                 </select>
+            </div>
+
+            <div class="form-group" id="datadenascimento">
+                <label for="data_nascimento">Data de Nascimento:</label>
+                <input type="date" id="data_nascimento" name="data_nascimento" v-model="data_nascimento">
             </div>
 
             <div class="form-group" id="tipodependencia">
@@ -33,12 +38,12 @@
 
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="text" name="email" placeholder="Digite o seu e-mail">
+                <input type="text" name="email" placeholder="Digite o seu e-mail"  v-model="email">
             </div>
 
             <div class="form-group">
                 <label for="senha">Senha</label>
-                <input type="password" name="senha" placeholder="Digite a sua senha">
+                <input type="password" name="senha" placeholder="Digite a sua senha"  v-model="senha">
             </div>
 
             <div class="form-group" id="imagem">
@@ -63,7 +68,7 @@
                 <input type="password" id="acomp_senha" name="acomp_senha" placeholder="Digite a senha do acompanhante">
             </div>
     
-            <button type="submit" class="btn_cadastrar">Cadastrar</button>
+            <button type="submit" class="btn_cadastrar" click="cadastrarusuario">Cadastrar</button>
 
         </form>
     </div>
@@ -119,7 +124,7 @@ form {
     color: white;
 }
 
-#tipodependencia, #metas, #imagem, #acomp_nome_completo {
+#tipodependencia, #metas, #imagem, #acomp_nome_completo, #datadenascimento {
     grid-column: 1 / -1;
 }
 
@@ -183,5 +188,4 @@ methods:{
         }
     }
 }
-
 </script>
