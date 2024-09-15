@@ -1,7 +1,7 @@
 <template>
     <div class="form_cadastro">
         <h1>Realizar Cadastro</h1>
-        <form>
+        <form @submit.prevent="cadastro">
             <div class="form-group">
                 <label for="nome">Nome Completo</label>
                 <input type="text" name="nome" placeholder="Digite o seu nome completo" v-model="nome">
