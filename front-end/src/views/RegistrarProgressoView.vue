@@ -121,6 +121,8 @@ form {
 </style>
 
 <script>
+import Swal from 'sweetalert2'
+import axios from 'axios';
 import Navbar from '@/components/Navbar.vue';
 
 export default {
