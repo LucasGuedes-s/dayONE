@@ -11,7 +11,7 @@
                 <input type="password" name="senha" placeholder="Digite a sua senha" v-model="senha">
                 <button type="submit" class="btn_entrar" click="login">Entrar</button>
                 <button type="submit" class="btn_acompanhante">Entrar como Acompanhante</button>
-                <p class="cadastro_info">Não tem cadastro? <a href="cadastrar.html">Cadastre-se aqui</a></p>
+                <router-link to="/cadastro"><p class="cadastro_info">Não tem cadastro? Cadastre-se aqui</p></router-link>
             </form>
         </div>
     </div>
