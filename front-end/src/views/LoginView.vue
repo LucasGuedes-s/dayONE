@@ -203,7 +203,8 @@ methods:{
         }).then(response =>{
             console.log(response.status)
             console.log(response)
-                router.push('/dashboard')
+            localStorage.setItem('dados', JSON.stringify(response.data.usuario));
+            router.push('/dashboard')
         }).catch(Error =>{
                 console.error(Error);
                 Swal.fire({
