@@ -176,7 +176,7 @@ methods:{
         }).then(response =>{
             console.log(response.status)
             console.log(response)
-            router.push('/login')
+            router.push('/')
         }).catch(Error =>{
                 console.error(Error);
                 Swal.fire({
