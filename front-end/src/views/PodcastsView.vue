@@ -3,18 +3,9 @@
     <main class="container_podcasts">
         <h1>Podcasts:</h1>
         <section class="podcast-list">
-            <div class="podcast-item">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/2ZDBtiG0ur760iZpxJfGvR?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>            
-            </div> 
-            <div class="podcast-item">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/1KmR6uCTXDmzct5MXlyYI8?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>            
-            </div>
-            <div class="podcast-item">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/0JWC4fZsrYMXkKRYR1IhzJ?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>            
-            </div>
-            <div class="podcast-item">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/1whVvdo5lLaG4e6h1DTIQK?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            </div>        
+            <div class="podcast-item" v-for="link in links" :key="link.id">
+                <iframe style="border-radius:12px" :src="link.link" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>            
+            </div>       
         </section>
     </main>
 </template>
@@ -63,11 +54,25 @@ h1 {
 
 <script>
 import Navbar from '@/components/Navbar.vue';
+import Axios  from 'axios';
 
 export default {
     name: 'podcasts',
     components: {
         Navbar
     },
+    data() {
+        return {
+            links: [],
+        }
+    },
+    mounted (){
+        Axios.get("http://localhost:3000/podcasts"
+        ).then(response => {
+            this.links = response.data.links
+        }).catch(Error => {
+            console.error(Error)
+        })
+    }
 }
 </script>

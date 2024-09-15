@@ -10,9 +10,8 @@
             </div>
         </div>
       </div>
-
       <div class="container_grafico">
-
+        <Grafico />
       </div>
 </template>
 
@@ -96,11 +95,12 @@ body {
 
 <script>
 import Navbar from '@/components/Navbar.vue';
-
+import Grafico from '@/components/Grafico.vue';
 export default {
     name: 'dashboard',
     components: {
-        Navbar
+        Navbar,
+        Grafico
     },
 }
 </script>
