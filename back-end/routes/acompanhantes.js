@@ -5,9 +5,9 @@ var acompanhanteController = require('../controllers/acompanhante.controllers')
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
-router.get('/acompanhantes/email', acompanhanteController.getAcompanhante)
+router.get('/acompanhante/:email', acompanhanteController.getAcompanhante);
 
 router.post('/login', acompanhanteController.loginAcompanhante);
-router.post('/', acompanhanteController.novoAcompanhante)
+router.post('/novoAcom', acompanhanteController.novoAcompanhante);
 
 module.exports = router;

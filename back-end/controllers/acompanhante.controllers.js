@@ -11,36 +11,38 @@ async function loginAcompanhante(req, res, next) {
         const acomp = await collection.findOne({ email: email });
 
         if (!acomp) {
-            console.error('Usuário ou senha incorretos');
-            return res.status(401).json({ message: 'Usuário ou senha incorretos' });
+            console.error('Acompanhante ou senha incorretos');
+            res.status(401).json({ message: 'Acompanhante ou senha incorretos' });
         }
 
         const senhaValida = await bcrypt.compare(req.body.acompanhante.senha, acomp.senha);
         if (senhaValida) {
-            res.status(200).json({ message: 'Usuário logado com sucesso' });
+            res.status(200).json({ message: 'Acompanhante logado com sucesso' });
         } else {
-            console.error('Usuário ou senha incorretos');
-            res.status(401).json({ message: 'Usuário ou senha incorretos' });
+            console.error('Acompanhante ou senha incorretos 1');
+            res.status(401).json({ message: 'Acompanhantes ou senha incorretos' });
         }
     } catch (error) {
-        console.error('Erro ao realizar login do usuário', error);
+        console.error('Erro ao realizar login ', error);
         res.status(500).json({ message: 'Erro ao realizar login' });
     }
 }
-async function getAcompanhante(req, res, next){
-    try{
-        const email = req.params.email; //email vem dos paramtros da url
-        const collection = db.collection('acompanhantes')
-        const acomp = await collection.findOne({email: email});
 
-        if(!acomp){
+async function getAcompanhante(req, res, next) {
+    try {
+        const email = req.params.email;
+        const collection = db.collection('acompanhantes');
+        const acomp = await collection.findOne({ email: email });
+
+        if (!acomp) {
             console.error('Acompanhante não encontrado');
-            return res.status(404).json({message: 'Acompanhante não encontrado'})
+            return res.status(404).json({ message: 'Acompanhante não encontrado' });
         }
-        res.status(200).json({acompanhante: acomp});
-    }catch (error){
+
+        res.status(200).json({ acompanhante: acomp });
+    } catch (error) {
         console.error('Erro ao buscar acompanhante', error);
-        res.status(500).json({message: 'Erro ao buscar acompanhante'});
+        res.status(500).json({ message: 'Erro ao buscar acompanhante' });
     }
 }
 
@@ -50,25 +52,25 @@ async function novoAcompanhante(req, res, next) {
 
         const collection = db.collection('acompanhantes');
 
-        // Verifica se o email já esta cadrastrado
         const acompanhanteExist = await collection.findOne({ email: email });
         if (acompanhanteExist) {
             return res.status(400).json({ message: 'Email já está em uso.' });
         }
 
         const senhaHash = await bcrypt.hash(senha, 10);
-
-        // inserir novo acompanhante na tabela(coleção)
         const novo_Acompanhante = await collection.insertOne({
             nome,
             email,
             senha: senhaHash,
         });
 
-        res.status(201).json({ message: 'Usuário criado com sucesso', usuario: novo_Acompanhante.ops[0] });
+        // Obtendo o novo acompanhante usando o ID 
+        const novoAcompanhante = await collection.findOne({ _id: novo_Acompanhante.insertedId });
+
+        res.status(201).json({ message: 'Acompanhante criado com sucesso', usuario: novoAcompanhante });
     } catch (error) {
-        console.error('Erro ao criar o usuário', error);
-        res.status(500).json({ message: 'Erro ao criar o usuário' });
+        console.error('Erro ao criar o acompanhante', error);
+        res.status(500).json({ message: 'Erro ao adicionar o acompanhante' });
     }
 }
 

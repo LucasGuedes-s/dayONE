@@ -33,7 +33,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/usuario', usersRouter);
-app.use('/acompanhantes', acompanhantesRouter);
+app.use('/acompanhante', acompanhantesRouter);
+app.use('/', acompanhantesRouter);
 
 
 app.use(function(req, res, next) {
