@@ -151,9 +151,37 @@ export default {
     name:'CadastrarView',
     data(){
         return{
+            nome:'',
             email:'',
             senha:'',
+            data_nascimento:'',
+            genero:''
         }
     },
+methods:{
+    async cadastro(){
+        await axios.post("http://localhost:3000/usuario/novoUsuario", {
+            usuario:{
+                nome:this.nome,
+                email:this.email,
+                senha:this.senha,
+                data_nascimento:this.data_nascimento,
+                genero:this.genero
+            }
+        }).then(response =>{
+            console.log(response.status)
+            console.log(response)
+            router.push('/login')
+        }).catch(Error =>{
+                console.error(Error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Usuário ou senhas incorretos',
+                    timer: 4000,
+                })
+            })
+        }
+    }
 }
+
 </script>
