@@ -3,21 +3,19 @@
         <div class="esquerda_login"> </div>
         <div class="direita_login">
             <h1><span class="day">Day</span><span class="one">One</span></h1>
-            <form class="login_form" @submit.prevent="login">
-                <h2>Realizar Login</h2>
+            <form class="login_form">
+                <h2>Entrar como Acompanhante</h2>
                 <label for="email">E-mail</label>
-                <input type="text" name="email" placeholder="Digite o seu e-mail" v-model="email">
+                <input type="text" name="email" placeholder="Digite o seu e-mail">
                 <label for="senha">Senha</label>
-                <input type="password" name="senha" placeholder="Digite a sua senha" v-model="senha">
-                <button type="submit" class="btn_entrar" click="login">Entrar</button>
-                <router-link to="/loginacompanhante"><button type="submit" class="btn_acompanhante">Entrar como Acompanhante</button></router-link>
-                <router-link to="/cadastro"><p class="cadastro_info">Não tem cadastro? Cadastre-se aqui</p></router-link>
+                <input type="password" name="senha" placeholder="Digite a sua senha">
+                <button type="submit" class="btn_entrar">Entrar</button>
             </form>
         </div>
     </div>
 </template>
 
-<style scoped>
+<style>
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -130,11 +128,6 @@ h2 {
 }
 
 
-.btn_acompanhante {
-    background-color: #240046;
-    margin-top: 15px;
-}
-
 .login_form p.cadastro_info {
     color: #E0E1DD;
     font-size: 14px;
@@ -149,71 +142,4 @@ h2 {
     text-decoration: none;
     font-weight: bold;
 }
-
-
-@media (max-width: 768px) {
-    .container_login {
-        flex-direction: column; 
-    }
-
-
-    .esquerda_login, .direita_login {
-        width: 100%;
-        height: 50vh; 
-    }
-
-
-    h1 {
-        font-size: 50px;
-    }
-
-
-    .login_form h2 {
-        font-size: 20px;
-    }
-
-
-    .login_form {
-        padding: 10px;
-    }
-}
-
 </style>
-
-<script>
-import router from '@/router';
-import Swal from 'sweetalert2'
-import axios from 'axios';
-
-export default {
-    name:'LoginView',
-    data(){
-        return{
-            email:'',
-            senha:'',
-        }
-    },
-methods:{
-    async login(){
-        await axios.post("http://localhost:3000/usuario/login", {
-            usuario:{
-                email:this.email,
-                senha:this.senha
-            }
-        }).then(response =>{
-            console.log(response.status)
-            console.log(response)
-            localStorage.setItem('dados', JSON.stringify(response.data.usuario));
-            router.push('/dashboard')
-        }).catch(Error =>{
-                console.error(Error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Usuário ou senhas incorretos',
-                    timer: 4000,
-                })
-            })
-        }
-    }
-}
-</script>
