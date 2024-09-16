@@ -12,6 +12,9 @@
                 <select name="genero" id="genero"  v-model="genero">
                     <option value="homem">Homem</option>
                     <option value="mulher">Mulher</option>
+                    <option value="naobinario">Não-binário</option>
+                    <option value="outro">Outro</option>
+
                 </select>
             </div>
 
@@ -145,6 +148,7 @@ h2 {
     width: 100%;
     margin-top: 10px;
 }
+
 </style>
 
 <script>
