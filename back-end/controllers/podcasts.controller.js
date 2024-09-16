@@ -1,6 +1,5 @@
 const pool = require('../database/acompanhante.mongo'); 
 const mongoose = require('mongoose');
-const { link } = require('../routes');
 
 const db = mongoose.connection;
 
