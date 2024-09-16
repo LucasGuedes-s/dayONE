@@ -15,7 +15,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
