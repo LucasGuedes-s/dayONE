@@ -4,8 +4,8 @@
         <div class="usuario_info"  v-for="usuario in dados.usuario" :key="usuario">
             <img src="https://firebasestorage.googleapis.com/v0/b/clinica-maria-luiza.appspot.com/o/uploads%2Ffuncionarios2.svg?alt=media&token=cc7511c0-9e76-4cd6-9e33-891bbb3cfd1c" alt="Imagem do Usuário" class="usuario_imagem">
             <div class="usuario_detalhes">
-                <h2 class="usuario_nome">Nome do Usuário: {{ usuario.nome }}</h2>
-                <h2 class="usuario_email">E-mail: {{ usuario.email }}</h2>
+                <h2 class="usuario_nome">{{ usuario.nome }}</h2>
+                <p class="usuario_email">{{ usuario.email }}</p>
                 <p class="usuario_data">Data de Entrada: {{ usuario.data_entrada }}</p>
                 <button class="btn_emergencia">Emergência</button>
             </div>
