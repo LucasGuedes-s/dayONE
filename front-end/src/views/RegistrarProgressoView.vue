@@ -133,6 +133,7 @@ export default {
         return {
             dados: [],
             id_dependencia:'',
+            tipo_depencia: [],
             status:'',
             atividades_paciente:'',
             desafios_paciente:'',
@@ -141,6 +142,16 @@ export default {
         }
     },
 methods:{
+    async get(){
+        console.log("AQUI")
+
+        await axios.get("http://localhost:3000/usuario/dependencias").then(response => {
+            this.tipo_depencia = response.data
+            console.log(this.tipo_depencia)
+        }).catch(Error => {
+            console.error(Error)
+        })
+    },
     async progresso(){
         this.dados = JSON.parse(localStorage.getItem('dados'));
         const email = this.dados.usuario[0].email;
@@ -160,7 +171,10 @@ methods:{
             console.log(response)
             router.push('/dashboard')
         })
-        }
+        },
+    mounted() {
+        this.get();
+    }
     }
 }
 </script>
