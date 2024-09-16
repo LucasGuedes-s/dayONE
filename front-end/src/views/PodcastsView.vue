@@ -25,7 +25,7 @@ body {
     padding: 0 20px;
 }
 
-h1 {
+h2 {
     color: white;
 }
 
