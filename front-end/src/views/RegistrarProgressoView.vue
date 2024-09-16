@@ -60,6 +60,7 @@ h2 {
     text-align: left;
     color: #E0E1DD;
     margin-bottom: 1.5rem;
+    margin-top: 0;
 }
 
 .form-container {
