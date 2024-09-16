@@ -107,4 +107,36 @@ header {
 .btn:hover {
     background-color: #5a189a;
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 16px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  .botoes_navbar {
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .navbar a {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 4px 12px;
+  }
+}
 </style>

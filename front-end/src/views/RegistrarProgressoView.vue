@@ -125,6 +125,27 @@ textarea {
 #mensagem {
     grid-column: 1 / -1;
 }
+
+@media (max-width: 768px) {
+    form {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-container {
+        padding: 1.5rem;
+    }
+    
+    .btn_registrar {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
 </style>
 
 <script>
