@@ -180,6 +180,7 @@ export default {
             })
         },
         mounted() {
+            console.log("Função Chegando")
             this.get();
         }
     }
