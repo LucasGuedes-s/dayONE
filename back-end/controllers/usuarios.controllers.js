@@ -72,6 +72,7 @@ async function getEvolucao(req, res, next){
 }
 async function getDependencias(req, res, next){
   try {
+      console.log("Aqui")
       const dependencia = await pool.query(`SELECT * FROM dependencia`);
       dependencia = dependencia.rows
 
