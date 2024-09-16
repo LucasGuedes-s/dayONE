@@ -41,11 +41,11 @@ import router from '@/router';
   </header>
 </template>
 
-<style>
+<style scoped>
 header {
     background-color: #180047;
     box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.10);
-    padding: 5px;
+    padding: 15px;
 }
 
 .navbar {
