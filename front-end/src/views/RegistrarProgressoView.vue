@@ -131,7 +131,7 @@ export default {
     },
     data() {
         return {
-            email:'',
+            dados: [],
             id_dependencia:'',
             status:'',
             atividades_paciente:'',
@@ -142,10 +142,13 @@ export default {
     },
 methods:{
     async progresso(){
+        this.dados = JSON.parse(localStorage.getItem('dados'));
+        const email = this.dados.usuario[0].email;
+
         await axios.post("http://localhost:3000/usuario/registro", {
-            usuario:{
-                email:this.email,
-                id_dependencia:this.id_dependencia,
+            registro:{
+                email: email,
+                id_dependencia: parseInt(this.id_dependencia),
                 status:this.status,
                 atividades_paciente:this.atividades_paciente,
                 desafios_paciente:this.desafios_paciente,

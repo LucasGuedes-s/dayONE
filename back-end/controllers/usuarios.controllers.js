@@ -15,7 +15,6 @@ async function loginUser(req, res) {
       const validar_senha = await bcrypt.compare(req.body.usuario.senha, usuario[0].senha);
 
       if (validar_senha) {
-          res.setHeader('Authorization', `Bearer token`);
           return res.status(200).json({ 
               usuario: {
                   usuario
@@ -44,7 +43,6 @@ async function getUser(req, res, next){
                 usuario
               }
           });
-          next()
       }
   } catch (err) {
       console.log(err)
@@ -66,11 +64,29 @@ async function getEvolucao(req, res, next){
             evolucao: evolucao
             
           });
-          next()
       }
   } catch (err) {
       console.log(err)
       console.error(`Erro ao encontrar evolução deste usuário`);
+  }
+}
+async function getDependencias(req, res, next){
+  try {
+      const dependencia = await pool.query(`SELECT * FROM dependencia`);
+      dependencia = dependencia.rows
+
+      if(!user){
+          console.error(`Nenhuma dependencia registrada`);
+      }
+      else{
+          res.status(200).json({ 
+            dependencia: dependencia
+            
+          });
+      }
+  } catch (err) {
+      console.log(err)
+      console.error(`Erro`);
   }
 }
 async function novoUsuario(req, res, next){
@@ -95,11 +111,11 @@ async function novoUsuario(req, res, next){
     }    
 }
 async function registro(req, res, next){
-  const { email, id_dependencia, status, atividades_paciente, desafios_paciente, vicio_feedback, mensagem_usuario} = req.body.registro;
+  const { email, id, status, atividades_paciente, desafios_paciente, vicio_feedback, mensagem_usuario} = req.body.registro;
   try {
     const novo_registro = await pool.query(
       `INSERT INTO registro (email_usuario, id_dependencia, status_paciente, atividades_paciente, desafios_paciente, vicio_feedback, mensagem_usuario) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-      [email, id_dependencia, status, atividades_paciente, desafios_paciente, vicio_feedback, mensagem_usuario]
+      [email, id, status, atividades_paciente, desafios_paciente, vicio_feedback, mensagem_usuario]
     );
   
     res.status(200).json({ message: 'Sucesso!'});
@@ -136,4 +152,4 @@ async function userDependencia(req, res, next){
     }
   }    
 }
-module.exports = { loginUser, getUser, getEvolucao, novoUsuario, registro, userDependencia}
+module.exports = { loginUser, getUser, getEvolucao, novoUsuario, registro, userDependencia, getDependencias}

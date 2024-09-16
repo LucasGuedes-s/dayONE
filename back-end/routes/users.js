@@ -8,6 +8,7 @@ router.post('/dependencia', userController.userDependencia);
 router.post('/registro', userController.registro);
 router.get('/usuario', userController.getUser);
 
+router.get('/dependencias', userController.getDependencias);
 router.get('/evolucao', userController.getEvolucao);
 
 module.exports = router;
