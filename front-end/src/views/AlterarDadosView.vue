@@ -1,26 +1,19 @@
 <template>
-    <div class="form_alterardados" v-for="usuario in dado.usuario" :key="usuario">
+    <div class="form_alterardados" v-for="usuario in dado" :key="usuario.usuario">
         <h1>Alterar Dados</h1>
         <form>
             <div class="form-group">
-                <label for="nome">Nome Completo {{ usuario.usuario.nome }}</label>
-                <input type="text" name="nome" placeholder="Digite o seu nome completo">
+                <label for="nome">Nome Completo</label>
+                <input type="text" name="nome" placeholder="Digite o seu nome completo" :value="usuario.usuario[0].nome">
             </div>
-
             <div class="form-group">
-                <label for="">Gênero</label>
-                <select name="genero" id="genero">
+                <label for="" >Gênero</label>
+                <select name="genero" id="genero" >
                     <option value="homem">Homem</option>
                     <option value="mulher">Mulher</option>
                     <option value="naobinario">Não-binário</option>
                     <option value="outro">Outro</option>
-
                 </select>
-            </div>
-
-            <div class="form-group" id="datadenascimento">
-                <label for="data_nascimento">Data de Nascimento:</label>
-                <input type="date" id="data_nascimento" name="data_nascimento">
             </div>
 
             <div class="form-group" id="tipodependencia">
@@ -34,41 +27,14 @@
                 </select>
             </div>
 
-            <div class="form-group" id="metas">
-                <label for="metas">Quais as suas metas?</label>
-                <textarea id="metas" name="mensagem" rows="1"></textarea>
-            </div>
-
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="text" name="email" placeholder="Digite o seu e-mail">
+                <input type="text" name="email" placeholder="Digite o seu e-mail" :value="usuario.usuario[0].email">
             </div>
 
             <div class="form-group">
                 <label for="senha">Senha</label>
                 <input type="password" name="senha" placeholder="Digite a sua senha">
-            </div>
-
-            <div class="form-group" id="imagem">
-                <label for="imagem">Adicionar Imagem:</label>
-                <input type="file" id="imagem" name="imagem">
-            </div>
-
-            <h2>Cadastrar Acompanhante</h2>
-
-            <div class="form-group" id="acomp_nome_completo">
-                <label for="acomp_nome">Nome Completo</label>
-                <input type="text" id="acomp_nome" name="acomp_nome" placeholder="Digite o nome completo do acompanhante">
-            </div>
-    
-            <div class="form-group" id="acomp_email">
-                <label for="acomp_email">E-mail</label>
-                <input type="email" id="acomp_email" name="acomp_email" placeholder="Digite o e-mail do acompanhante">
-            </div>
-    
-            <div class="form-group" id="acomp_senha">
-                <label for="acomp_senha">Senha</label>
-                <input type="password" id="acomp_senha" name="acomp_senha" placeholder="Digite a senha do acompanhante">
             </div>
     
             <button type="submit" class="btn_alterardados" click="">Alterar Dados</button>
@@ -196,7 +162,7 @@ export default {
     data(){
         return{
             dados: [],
-            dado: [],
+            dado: null,
             nome:'',
             email:'',
             senha:'',
@@ -218,9 +184,8 @@ methods:{
                 email: email,
             }
         }).then(response =>{
-            console.log(response.status)
-            console.log(response)
             this.dado = response.data
+            console.log(this.dado)
         }).catch(Error =>{
                 console.error(Error);
         });
