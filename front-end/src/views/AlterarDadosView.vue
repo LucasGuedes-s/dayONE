@@ -153,6 +153,37 @@ h2 {
     width: 100%;
     margin-top: 10px;
 }
+@media (max-width: 768px) {
+    html, body{
+        width: 100%;
+    }
+    .form_cadastro {
+        width: 82%;
+        margin-left: 4%;
+        padding: 5%;
+    }
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn_cadastrar {
+        margin-top: 20px;
+    }
+}
 </style>
 
 <script>

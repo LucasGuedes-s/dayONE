@@ -142,6 +142,31 @@ h2 {
     text-decoration: none;
     font-weight: bold;
 }
+@media (max-width: 768px) {
+    .container_login {
+        flex-direction: column; 
+    }
+
+
+    .esquerda_login, .direita_login {
+        width: 100%; 
+    }
+
+
+    h1 {
+        font-size: 50px;
+    }
+
+
+    .login_form h2 {
+        font-size: 20px;
+    }
+
+
+    .login_form {
+        padding: 10px;
+    }
+}
 </style>
 <script>
 import router from '@/router';

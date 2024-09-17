@@ -134,25 +134,15 @@ textarea {
 }
 
 @media (max-width: 768px) {
+    .form-container {
+        width: 82%;
+        margin-left: 4%;
+        padding: 5%;
+    }
     form {
         grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    .form-container {
-        padding: 1.5rem;
-    }
-    
-    .btn_registrar {
-        padding: 8px;
-        font-size: 14px;
     }
 }
-
 </style>
 
 <script>
