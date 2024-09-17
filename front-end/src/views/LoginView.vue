@@ -160,8 +160,7 @@ h2 {
 
 
     .esquerda_login, .direita_login {
-        width: 100%;
-        height: 50vh; 
+        width: 100%; 
     }
 
 
