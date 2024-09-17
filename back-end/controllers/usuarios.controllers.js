@@ -110,7 +110,9 @@ async function novoUsuario(req, res, next){
 }
 async function registro(req, res, next){
   const { email, id, status, atividades_paciente, desafios_paciente, vicio_feedback, mensagem_usuario} = req.body.registro;
-  try {
+  console.log(id)
+
+  /*try {
     const novo_registro = await pool.query(
       `INSERT INTO registro (email_usuario, id_dependencia, status_paciente, atividades_paciente, desafios_paciente, vicio_feedback, mensagem_usuario) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
       [email, id, status, atividades_paciente, desafios_paciente, vicio_feedback, mensagem_usuario]
@@ -126,7 +128,7 @@ async function registro(req, res, next){
       console.error(err.message);
       res.status(500).json({ message: 'Erro ao adicionar registro de vício' });
     }
-  }    
+  }   */ 
 }
 async function userDependencia(req, res, next){
   const { email_usuario, id_dependencia} = req.body.usuarioDependencia;

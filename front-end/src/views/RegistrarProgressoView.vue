@@ -4,8 +4,14 @@
         <h2>Registrar Progresso</h2>
         <form @submit.prevent="progresso">
             <div class="form-group">
-                <label for="data">Data</label>
-                <input type="date" id="data" name="data">
+
+                <label for="data">Tipo dependencia</label>
+
+                <select id="dependencia" name="dependencia" v-model="id_dependencia" required>
+                    <option v-for="dependencia in tipo_depencia.dependencia" :key="dependencia" :value="dependencia.id_dependencia">
+                        {{ dependencia.id_dependencia }} - {{ dependencia.nome_dependencia }} 
+                    </option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="humor">Como você está se sentindo hoje?</label>
@@ -160,6 +166,7 @@ export default {
     },
     data() {
         return {
+            dependencia: null,
             dados: [],
             id_dependencia: '',
             tipo_depencia: [],
@@ -172,8 +179,6 @@ export default {
     },
     methods: {
         async get() {
-            console.log("AQUI")
-
             await axios.get("http://localhost:3000/usuario/dependencias").then(response => {
                 this.tipo_depencia = response.data
                 console.log(this.tipo_depencia)
@@ -184,11 +189,11 @@ export default {
         async progresso() {
             this.dados = JSON.parse(localStorage.getItem('dados'));
             const email = this.dados.usuario[0].email;
-
+            console.log(this.id_dependencia)
             await axios.post("http://localhost:3000/usuario/registro", {
                 registro: {
                     email: email,
-                    id_dependencia: parseInt(this.id_dependencia),
+                    id_dependencia: this.id_dependencia,
                     status: this.status,
                     atividades_paciente: this.atividades_paciente,
                     desafios_paciente: this.desafios_paciente,
@@ -200,11 +205,10 @@ export default {
                 console.log(response)
                 router.push('/dashboard')
             })
-        },
-        mounted() {
-            console.log("Função Chegando")
-            this.get();
         }
+    },
+    mounted() {
+        this.get();
     }
 }
 </script>
