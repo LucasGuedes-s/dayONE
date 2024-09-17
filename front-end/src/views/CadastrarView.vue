@@ -79,12 +79,13 @@
 
 <style scoped>
 body {
+    background-color: #10002b;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
 }
 
-h1{
+h1 {
     margin-top: 0;
 }
 
