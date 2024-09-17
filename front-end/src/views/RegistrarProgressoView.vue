@@ -28,9 +28,9 @@
             <div class="form-group" id="evitarvicio">
                 <label for="sucesso">Conseguiu evitar o seu vício?</label>
                 <select id="sucesso" name="sucesso" v-model="status">
-                    <option value="sim">Sim</option>
-                    <option value="nao">Não</option>
-                    <option value="parcialmente">Parcialmente</option>
+                    <option value="Sim">Sim</option>
+                    <option value="Nao">Não</option>
+                    <option value="Parcialmente">Parcialmente</option>
                 </select>
             </div>
             <div class="form-group">
@@ -156,9 +156,10 @@ textarea {
 </style>
 
 <script>
+import router from '@/router';
 import axios from 'axios';
 import Navbar from '@/components/Navbar.vue';
-
+import Swal from 'sweetalert2';
 export default {
     name: 'progresso',
     components: {
@@ -189,7 +190,6 @@ export default {
         async progresso() {
             this.dados = JSON.parse(localStorage.getItem('dados'));
             const email = this.dados.usuario[0].email;
-            console.log(this.id_dependencia)
             await axios.post("http://localhost:3000/usuario/registro", {
                 registro: {
                     email: email,
@@ -201,9 +201,22 @@ export default {
                     mensagem_usuario: this.mensagem_usuario
                 }
             }).then(response => {
-                console.log(response.status)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registro feito com sucesso',
+                    text: 'O seu registro foi feito com sucesso',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                })
                 console.log(response)
                 router.push('/dashboard')
+            }).catch(error =>{
+                console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Algo de errado!!',
+                })
             })
         }
     },
