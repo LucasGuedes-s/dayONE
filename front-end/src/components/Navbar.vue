@@ -34,8 +34,8 @@ import router from '@/router';
         </router-link>
       </ul>
       <div class="botoes_navbar">
-        <a href="#" class="btn">Alterar Dados</a>
-        <a href="#" class="btn">Sair</a>
+        <router-link to="/alterardados" class="btn">Alterar Dados</router-link>
+        <router-link to="/" class="btn">Sair</router-link>
       </div>
     </nav>
   </header>

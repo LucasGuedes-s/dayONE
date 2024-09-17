@@ -16,6 +16,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
+    
 }
 
 .container_podcasts {
@@ -27,6 +28,7 @@ body {
 
 h2 {
     color: white;
+    margin-top: 10px;
 }
 
 .podcast-list {

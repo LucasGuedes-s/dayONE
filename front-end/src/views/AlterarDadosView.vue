@@ -77,7 +77,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
 body {
     background-color: #10002b;
     font-family: 'Montserrat', sans-serif;
@@ -87,6 +87,7 @@ body {
 
 h1 {
     margin-top: 0;
+    margin-bottom: 20px;
 }
 
 .form_alterardados {
@@ -153,3 +154,52 @@ h2 {
     margin-top: 10px;
 }
 </style>
+
+<script>
+import router from '@/router';
+import Swal from 'sweetalert2'
+import axios from 'axios';
+
+export default {
+    name:'AlterarDadosView',
+    data(){
+        return{
+            nome:'',
+            email:'',
+            senha:'',
+            data_nascimento:'',
+            genero:'',
+            dependencia:'',
+            metas:'',
+            imagem:'',
+            acomp_nome:'',
+            acomp_email:'',
+            acomp_senha:''
+        }
+    },
+methods:{
+    async alterardados(){
+        await axios.post("http://localhost:3000/usuario/dados", {
+            usuario:{
+                nome:this.nome,
+                email:this.email,
+                senha:this.senha,
+                data_nascimento:this.data_nascimento,
+                genero:this.genero
+            }
+        }).then(response =>{
+            console.log(response.status)
+            console.log(response)
+            router.push('/')
+        }).catch(Error =>{
+                console.error(Error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Usuário ou senhas incorretos',
+                    timer: 4000,
+                })
+            })
+        }
+    }
+}
+</script>
