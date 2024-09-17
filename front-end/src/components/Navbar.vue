@@ -31,7 +31,7 @@
       </ul>
       <div class="botoes_navbar">
         <router-link to="/alterardados" class="btn">Alterar Dados</router-link>
-        <button type="submit" @click="sair" class="btn">Sair</button>
+        <button type="submit" class="btn_sair" @click="sair">Sair</button>
       </div>
     </nav>
   </header>
@@ -102,6 +102,20 @@ header {
 
 .btn:hover {
     background-color: #5a189a;
+}
+
+.btn_sair {
+    color: #fff;
+    background-color: #180047;
+    border: 1px solid #5a189a;
+    font-size: 16px;
+    padding: 6px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.btn_sair:hover {
+  background-color: #5a189a;
 }
 
 @media (max-width: 768px) {
