@@ -1,6 +1,6 @@
 <template>
     <div>
-        <canvas id="grafico2"></canvas>
+        <canvas id="graficoPizza"></canvas>
     </div>
 </template>
 
@@ -10,19 +10,19 @@ import Chart from 'chart.js/auto';
 import axios from 'axios';
 
 export default {
-    name: 'grafico2',
+    name: 'graficoPizza',
     data() {
         return {
             user_registro: [],
             feedbacksLinhas: ['feliz', 'triste', 'ansioso', 'calmo', 'irritado'],
-            feeedbacksContados: {
-                feliz: [],
-                triste: [],
-                ansioso: [],
-                calmo: [],
-                irritado: []
+            feedbacksContados: {
+                feliz: 0,
+                triste: 0,
+                ansioso: 0,
+                calmo: 0,
+                irritado: 0
             }
-        }
+        };
     },
     methods: {
         async dadosUser() {
@@ -32,7 +32,6 @@ export default {
                     params: { email: email }
                 });
 
-                // Verifica se response.data.evolucao contém o array esperado
                 if (Array.isArray(response.data.evolucao)) {
                     this.user_registro = response.data.evolucao;
                     this.contadorFeedback();
@@ -45,85 +44,50 @@ export default {
             }
         },
         contadorFeedback() {
-            // Inicializa contadores
-            this.feeedbacksContados = {
-                feliz: [],
-                triste: [],
-                ansioso: [],
-                calmo: [],
-                irritado: []
+            this.feedbacksContados = {
+                feliz: 0,
+                triste: 0,
+                ansioso: 0,
+                calmo: 0,
+                irritado: 0
             };
 
-            // Contadores por mês
             this.user_registro.forEach(item => {
-                const date = new Date(item.data_registro);
-                const monthYear = `${date.getMonth() + 1}-${date.getFullYear()}`;
                 const feedback = item.vicio_feedback.toLowerCase();
-
                 if (this.feedbacksLinhas.includes(feedback)) {
-                    if (!this.feeedbacksContados[feedback][monthYear]) {
-                        this.feeedbacksContados[feedback][monthYear] = 0;
-                    }
-                    this.feeedbacksContados[feedback][monthYear]++;
+                    this.feedbacksContados[feedback]++;
                 }
             });
         },
         renderChart() {
-            const ctx = document.getElementById('grafico2').getContext('2d');
-
-            const labels = [...new Set(this.user_registro.map(item => {
-                const date = new Date(item.data_registro);
-                return `${date.getMonth() + 1}-${date.getFullYear()}`;
-            }))];
-
-            const datasets = this.feedbacksLinhas.map(feedback => {
-                const data = labels.map(label => {
-                    return this.feeedbacksContados[feedback][label] || 0;
-                });
-
-                return {
-                    label: feedback.charAt(0).toUpperCase() + feedback.slice(1),
-                    data: data,
-                    borderColor: this.getColor(feedback),
-                    fill: false,
-                };
-            });
+            const ctx = document.getElementById('graficoPizza').getContext('2d');
+            
+            const data = Object.values(this.feedbacksContados);
+            const labels = this.feedbacksLinhas.map(feedback => feedback.charAt(0).toUpperCase() + feedback.slice(1));
 
             new Chart(ctx, {
-                type: 'line',
+                type: 'pie',
                 data: {
                     labels: labels,
-                    datasets: datasets,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: [
+                            '#c77dff', '#e0aaff', '#9d4edd', '#7b2cbf', '#5a189a'
+                        ]
+                    }]
                 },
                 options: {
                     responsive: true,
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Data'
-                            }
+                    plugins: {
+                        legend: {
+                            position: 'top',
                         },
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Contagem'
-                            }
+                        title: {
+                            display: true,
                         }
-                    },
-                },
+                    }
+                }
             });
-        },
-        getColor(feedback) {
-            const colors = {
-                feliz: 'green',
-                triste: 'blue',
-                ansioso: 'yellow',
-                calmo: 'purple',
-                irritado: 'red'
-            };
-            return colors[feedback] || 'gray';
         }
     },
     mounted() {
@@ -135,7 +99,7 @@ export default {
 
 <style scoped>
 canvas {
-    max-width: 800px; /* Ajuste o tamanho conforme necessário */
-    max-height: 500px; /* Ajuste o tamanho conforme necessário */
+    max-width: 600px; /* Ajuste o tamanho conforme necessário */
+    max-height: 400px; /* Ajuste o tamanho conforme necessário */
 }
 </style>

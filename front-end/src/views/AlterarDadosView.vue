@@ -1,9 +1,9 @@
 <template>
-    <div class="form_alterardados">
+    <div class="form_alterardados" v-for="usuario in dado.usuario" :key="usuario">
         <h1>Alterar Dados</h1>
         <form>
             <div class="form-group">
-                <label for="nome">Nome Completo</label>
+                <label for="nome">Nome Completo {{ usuario.usuario.nome }}</label>
                 <input type="text" name="nome" placeholder="Digite o seu nome completo">
             </div>
 
@@ -195,6 +195,8 @@ export default {
     name:'AlterarDadosView',
     data(){
         return{
+            dados: [],
+            dado: [],
             nome:'',
             email:'',
             senha:'',
@@ -202,13 +204,27 @@ export default {
             genero:'',
             dependencia:'',
             metas:'',
-            imagem:'',
             acomp_nome:'',
             acomp_email:'',
             acomp_senha:''
         }
     },
 methods:{
+    async get() {
+        this.dados = JSON.parse(localStorage.getItem('dados_acomp'));
+        const email = this.dados.user.acompanhado;
+        axios.get("http://localhost:3000/usuario/dados", {
+            params:{
+                email: email,
+            }
+        }).then(response =>{
+            console.log(response.status)
+            console.log(response)
+            this.dado = response.data
+        }).catch(Error =>{
+                console.error(Error);
+        });
+    },
     async alterardados(){
         await axios.post("http://localhost:3000/usuario/dados", {
             usuario:{
@@ -224,13 +240,11 @@ methods:{
             router.push('/')
         }).catch(Error =>{
                 console.error(Error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Usuário ou senhas incorretos',
-                    timer: 4000,
-                })
             })
         }
+    },
+    mounted(){
+        this.get()
     }
 }
 </script>
