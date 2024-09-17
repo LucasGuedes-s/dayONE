@@ -62,7 +62,7 @@ export default {
                 datasets: [
                     {
                         data: [simCount, naoCount, parcialmenteCount],
-                        backgroundColor: ['green', 'red', 'orange'],
+                        backgroundColor: ['#9d4edd', '#7b2cbf', '#5a189a'],
                     },
                 ],
             },

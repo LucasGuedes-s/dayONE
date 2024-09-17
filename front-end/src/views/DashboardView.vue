@@ -6,7 +6,7 @@
             <div class="usuario_detalhes">
                 <h2 class="usuario_nome">{{ usuario.nome }}</h2>
                 <p class="usuario_email">{{ usuario.email }}</p>
-                <p class="usuario_data">Data de Entrada: {{ usuario.data_entrada }}</p>
+                <p class="usuario_data">Data de Entrada: {{ formatDate(usuario.data_entrada) }}</p>
                 <button class="btn_emergencia">Emergência</button>
             </div>
         </div>
@@ -113,6 +113,7 @@ h1{
 import Navbar from '@/components/Navbar.vue';
 import Grafico from '@/components/Grafico.vue';
 import GraficoLinhas from '@/components/GraficoLinhas.vue'
+import { formatDate } from '@/utils/formatarData';
 export default {
     name: 'dashboard',
     components: {
@@ -122,6 +123,7 @@ export default {
     },
     data(){
         return{
+            formatDate,
             dados: []
         }
     },

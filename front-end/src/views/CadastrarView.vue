@@ -173,7 +173,6 @@ h2 {
     }
 }
 </style>
-
 <script>
 import router from '@/router';
 import Swal from 'sweetalert2'
