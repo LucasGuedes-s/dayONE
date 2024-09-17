@@ -106,7 +106,51 @@ h1{
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     color: white;
 }
+@media (max-width: 768px) {
+  .container_usuario {
+    width: 90%;
+    padding: 1.5rem;
+  }
 
+  .usuario_info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .usuario_imagem {
+    width: 120px;
+    height: 120px;
+  }
+
+  .usuario_nome {
+    font-size: 20px;
+  }
+
+  .usuario_email,
+  .usuario_data {
+    font-size: 14px;
+  }
+
+  .btn_emergencia {
+    font-size: 14px;
+    padding: 10px 24px;
+  }
+
+  .container_grafico {
+    width: 90%;
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+
+  .grafico_box {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+}
 </style>
 
 <script>
