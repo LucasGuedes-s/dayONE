@@ -29,13 +29,11 @@ async function loginUser(req, res) {
 }
 async function getUser(req, res, next){
   try {
-      const email = req.body.usuario.email
-
+      const email = req.query.email
       const user = await pool.query(`SELECT * FROM usuario WHERE email = '${email}'`);
       usuario = user.rows
-
       if(!user){
-          console.error(`Usuário não encontrado`);
+        console.error(`Usuário não encontrado`);
       }
       else{
           res.status(200).json({ 

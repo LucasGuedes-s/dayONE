@@ -32,6 +32,14 @@ const router = createRouter({
       component: () => import('../views/DashboardView.vue')
     },
     {
+      path: '/dashboard-acompanhante',
+      name: 'dashboard-acompanhante',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/DashboardAcompanhante.vue')
+    },
+    {
       path: '/progresso',
       name: 'progresso',
       // route level code-splitting
