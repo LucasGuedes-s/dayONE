@@ -7,7 +7,7 @@
                 <h2 class="usuario_nome">{{ usuario.nome }}</h2>
                 <p class="usuario_email">{{ usuario.email }}</p>
                 <p class="usuario_data">Data de Entrada: {{ formatDate(usuario.data_entrada) }}</p>
-                <button class="btn_emergencia">Emergência</button>
+                <button class="btn_emergencia">Excluir Conta</button>
             </div>
         </div>
       </div>
@@ -174,6 +174,26 @@ export default {
     mounted(){
         this.dados = JSON.parse(localStorage.getItem('dados'));
         console.log(JSON.parse(localStorage.getItem('dados')))
+    },
+  methods: {
+    async excluirconta(){
+      Swal.fire({
+    title: "Deseja excluir sua conta?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sim, deletar conta!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deletada!",
+        text: "Sua conta foi deletada!",
+        icon: "success"
+      });
     }
+  });
+    }
+  }
 }
 </script>
