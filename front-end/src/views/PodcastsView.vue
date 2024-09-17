@@ -10,7 +10,7 @@
     </main>
 </template>
 
-<style>
+<style scoped>
 body {
     background-color: #110033;
     font-family: 'Montserrat', sans-serif;
