@@ -9,15 +9,14 @@ async function loginAcompanhante(req, res, next) {
         const email = req.body.acompanhante.email;
         const collection = db.collection('acompanhantes');
         const acomp = await collection.findOne({ email: email });
-
+        console.log(acomp)
         if (!acomp) {
-            console.error('Acompanhante ou senha incorretos');
-            res.status(401).json({ message: 'Acompanhante ou senha incorretos' });
+            return res.status(401).json({ message: 'Acompanhante ou senha incorretos' });
         }
 
         const senhaValida = await bcrypt.compare(req.body.acompanhante.senha, acomp.senha);
         if (senhaValida) {
-            res.status(200).json({ message: 'Acompanhante logado com sucesso' });
+            res.status(200).json({user: acomp});
         } else {
             console.error('Acompanhante ou senha incorretos 1');
             res.status(401).json({ message: 'Acompanhantes ou senha incorretos' });

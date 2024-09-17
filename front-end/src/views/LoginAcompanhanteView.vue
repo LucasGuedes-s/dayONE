@@ -3,19 +3,19 @@
         <div class="esquerda_login"> </div>
         <div class="direita_login">
             <h1><span class="day">Day</span><span class="one">One</span></h1>
-            <form class="login_form">
+            <form class="login_form" @submit.prevent="login">
                 <h2>Entrar como Acompanhante</h2>
                 <label for="email">E-mail</label>
-                <input type="text" name="email" placeholder="Digite o seu e-mail">
+                <input type="text" name="email" placeholder="Digite o seu e-mail" v-model="email">
                 <label for="senha">Senha</label>
-                <input type="password" name="senha" placeholder="Digite a sua senha">
-                <button type="submit" class="btn_entrar">Entrar</button>
+                <input type="password" name="senha" placeholder="Digite a sua senha" v-model="senha">
+                <button type="submit" class="btn_entrar" click="login">Entrar</button>
             </form>
         </div>
     </div>
 </template>
 
-<style scoped>
+<style>
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -142,32 +142,44 @@ h2 {
     text-decoration: none;
     font-weight: bold;
 }
+</style>
+<script>
+import router from '@/router';
+import Swal from 'sweetalert2'
+import axios from 'axios';
 
-@media (max-width: 768px) {
-    .container_login {
-        flex-direction: column; 
-    }
+export default {
+    name:'LoginView',
+    data(){
+        return{
+            email:'',
+            senha:'',
+        }
+    },
+methods:{
+    async login(){
+        sessionStorage.removeItem('dados');
+        await axios.post("http://localhost:3000/acompanhante/login", {
+            acompanhante:{
+                email:this.email,
+                senha:this.senha
+            }
+        }).then(response =>{
+            console.log(response.status)
+            console.log(response)
 
-
-    .esquerda_login, .direita_login {
-        width: 100%;
-        height: 50vh; 
-    }
-
-
-    h1 {
-        font-size: 50px;
-    }
-
-
-    .login_form h2 {
-        font-size: 20px;
-    }
-
-
-    .login_form {
-        padding: 10px;
+            localStorage.setItem('dados_acomp', JSON.stringify(response.data));
+            console.log(JSON.parse(localStorage.getItem('dados_acomp')))
+            router.push('/dashboard-acompanhante')
+        }).catch(Error =>{
+                console.error(Error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Usuário ou senhas incorretos',
+                    timer: 4000,
+                })
+            })
+        }
     }
 }
-
-</style>
+</script>
