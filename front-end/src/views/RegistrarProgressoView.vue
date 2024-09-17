@@ -48,7 +48,7 @@
     </div>
 </template>
 
-<style scoped>
+<style>
 body {
     background-color: #110033;
     font-family: 'Montserrat', sans-serif;
