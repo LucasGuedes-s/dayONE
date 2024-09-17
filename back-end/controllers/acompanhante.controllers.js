@@ -47,8 +47,8 @@ async function getAcompanhante(req, res, next) {
 
 async function novoAcompanhante(req, res, next) {
     try {
-        const { nome, email, senha } = req.body.acompanhante;
-        const usuario_email = req.body.usuario_email; //pegando o email do usuario 
+        const { nome, email, senha, usuario_email } = req.body.acompanhante;
+        console.log(usuario_email)
 
         const collection = db.collection('acompanhantes');
 

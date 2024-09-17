@@ -11,7 +11,7 @@
         </div>
       </div>
     <div class="registros">
-    <h2>Informações do Registro de {{  }}</h2>
+    <h2>Informações do Registro de {{ }}</h2>
     <table class="styled-table">
       <thead>
         <tr>
@@ -23,10 +23,10 @@
           <th>Mensagem do Usuário</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-for="registro in evolucao.evolucao" :key="registro.id_registro">
         <tr>
           <td> 10/05/2024</td>
-          <td>{{ registro.status }}</td>
+          <td>{{ registro.status_paciente }}</td>
           <td>{{ registro.atividades_paciente }}</td>
           <td>{{ registro.desafios_paciente }}</td>
           <td>{{ registro.vicio_feedback }}</td>
@@ -170,15 +170,7 @@ export default {
         return{
             dados: [],
             dependente: [],
-            registro: {
-                email: "samuel@gmail.com",
-                id_dependencia: 1,
-                status: "Não",
-                atividades_paciente: "Alguma coisa",
-                desafios_paciente: "Muitos desafios",
-                vicio_feedback: "Ansioso",
-                mensagem_usuario: "Alguma coisa"
-            }
+            evolucao: []
         }
     },
     mounted(){
@@ -186,8 +178,7 @@ export default {
 
         this.dados = JSON.parse(localStorage.getItem('dados_acomp'));
         console.log(this.dados.user.nome)
-        //const email = this.dados.user.email_acompanhante;
-        const email = 'thiago@gmail.com'
+        const email = this.dados.user.acompanhado;
         axios.get("http://localhost:3000/usuario/dados", {
             params:{
                 email: email,
@@ -198,7 +189,21 @@ export default {
             this.dependente = response.data
         }).catch(Error =>{
                 console.error(Error);
-            })
+        });
+
+        axios.get("http://localhost:3000/usuario/evolucao", {
+            params:{
+                email: email,
+            }
+        }).then(response =>{
+            console.log(response.status)
+            console.log(response)
+            this.evolucao = response.data
+        }).catch(Error =>{
+                console.error(Error);
+        })
+
         }
+        
     }
 </script>

@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import router from '@/router';
-</script>
-
 <template>
     <header>
     <nav class="navbar">
@@ -35,7 +31,7 @@ import router from '@/router';
       </ul>
       <div class="botoes_navbar">
         <router-link to="/alterardados" class="btn">Alterar Dados</router-link>
-        <router-link to="/" class="btn">Sair</router-link>
+        <button type="submit" @click="sair" class="btn">Sair</button>
       </div>
     </nav>
   </header>
@@ -140,3 +136,17 @@ header {
   }
 }
 </style>
+<script>
+import router from '@/router';
+
+export default {
+    name: 'dashboard',
+    methods:{
+      async sair(){
+        sessionStorage.removeItem('dados');
+        this.dados = JSON.parse(localStorage.getItem('dados_acomp'));
+        router.push('/')
+      }
+    }
+  }
+</script>

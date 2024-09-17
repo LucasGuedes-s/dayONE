@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import router from '@/router';
-</script>
-
 <template>
     <header>
     <nav class="navbar">
@@ -9,7 +5,7 @@ import router from '@/router';
         <h1><span class="day">Day</span><span class="one">One</span></h1>
     </div>
       <div class="botoes_navbar">
-        <a href="#" class="btn">Sair</a>
+        <button type="submit" @click="sair" class="btn">Sair</button>
       </div>
     </nav>
   </header>
@@ -82,3 +78,17 @@ header {
     background-color: #5a189a;
 }
 </style>
+<script>
+import router from '@/router';
+
+export default {
+    name: 'dashboard',
+    methods:{
+      async sair(){
+        sessionStorage.removeItem('dados');
+        this.dados = JSON.parse(localStorage.getItem('dados_acomp'));
+        router.push('/')
+      }
+    }
+  }
+</script>

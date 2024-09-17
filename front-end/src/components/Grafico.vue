@@ -48,7 +48,6 @@ export default {
     },
     renderChart() {
         const ctx = document.getElementById('grafico').getContext('2d');
-
         // Contagem dos valores "SIM", "NÃO" e "PARCIALMENTE"
         const simCount = this.contarStatus('Sim');
         const naoCount = this.contarStatus('Nao');
