@@ -4,6 +4,8 @@ var userController = require('../controllers/usuarios.controllers')
 
 router.post('/login', userController.loginUser);
 router.post('/novoUsuario', userController.novoUsuario);
+router.post('/updateUser', userController.updateUser);
+
 router.post('/dependencia', userController.userDependencia);
 router.post('/registro', userController.registro);
 router.get('/dados', userController.getUser);

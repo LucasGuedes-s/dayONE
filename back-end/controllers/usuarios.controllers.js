@@ -27,6 +27,28 @@ async function loginUser(req, res) {
       console.error(`Erro ao realizar login do usuário:`, err);
   }
 }
+async function updateUser(req, res, next){
+  const { email, nome, data_nascimento, genero } = req.body.usuario;
+  const senha = bcrypt.hash(req.body.usuario.senha)
+  const status = true
+
+  try {
+    const usuarioAtualizado = await pool.query(
+      `UPDATE usuario 
+       SET email = $1, nome = $2, senha = $3, data_nascimento = $4, gênero = $5, status = $6
+       WHERE email = $1
+       RETURNING *`,
+      [email, nome, senha, data_nascimento, genero, status, email]
+    );
+    
+    res.status(200).json({ message: 'Usuário alterado com sucesso', usuario: usuarioAtualizado.rows[0] });
+
+  } catch (err) {
+      console.error(err.message);
+      res.status(500).json({ message: 'Erro ao realizar update o usuário' });
+  }    
+}
+
 async function getUser(req, res, next){
   try {
       const email = req.query.email
@@ -88,15 +110,17 @@ async function getDependencias(req, res, next){
   }
 }
 async function novoUsuario(req, res, next){
-    const { email, nome, data_nascimento, genero } = req.body.usuario;
+    const { email, nome, data_nascimento, genero, dependencia } = req.body.usuario;
     const senha = bcrypt.hash(req.body.usuario.senha)
     const status = true
+
     try {
       const novo_usuario = await pool.query(
         `INSERT INTO usuario (email, nome, senha, data_nascimento, gênero, status) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
         [email, nome, senha, data_nascimento, genero, status]
       );
-      
+      await userDependencia(email, dependencia)
+
       res.status(200).json({ message: 'Usuário criado com sucesso', usuario: novo_usuario.rows[0] });
 
     } catch (err) {
@@ -129,8 +153,10 @@ async function registro(req, res, next){
     }
   }
 }
-async function userDependencia(req, res, next){
-  const { email_usuario, id_dependencia} = req.body.usuarioDependencia;
+async function userDependencia(usuario, dependencia){
+  const email_usuario = usuario;
+  const id_dependencia = dependencia;
+
   const status_dependencia = true
   try {
     const usuarioDependencia = await pool.query(
@@ -139,16 +165,9 @@ async function userDependencia(req, res, next){
     );
 
     console.log(usuarioDependencia)
-    res.status(200).json({ message: 'Sucesso ao registrar dependencia do paciente!'});
-
+    return usuarioDependencia
   } catch (err) {
     console.error(err)
-    if (err.code === '23505') {  // Código de erro para chave duplicada no PostgreSQL
-      res.status(400).json({ message: 'Erro ao cadastrar, chave duplicada' });
-    } else {
-      console.error(err.message);
-      res.status(500).json({ message: 'Erro ao adicionar registro de dependencia de usuário' });
-    }
   }    
 }
-module.exports = { loginUser, getUser, getEvolucao, novoUsuario, registro, userDependencia, getDependencias}
+module.exports = { loginUser, updateUser, getUser, getEvolucao, novoUsuario, registro, userDependencia, getDependencias}

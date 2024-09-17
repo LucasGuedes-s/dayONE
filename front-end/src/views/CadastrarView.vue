@@ -9,7 +9,7 @@
 
             <div class="form-group">
                 <label for="">Gênero</label>
-                <select name="genero" id="genero"  v-model="genero">
+                <select name="genero" id="genero" v-model="genero">
                     <option value="homem">Homem</option>
                     <option value="mulher">Mulher</option>
                     <option value="naobinario">Não-binário</option>
@@ -24,13 +24,11 @@
             </div>
 
             <div class="form-group" id="tipodependencia">
-                <label for="dependencia">Tipo de Dependência</label>
-                <select name="dependencia" id="dependencia">
-                    <option value="alcool">Álcool</option>
-                    <option value="drogas">Drogas</option>
-                    <option value="jogos">Jogos</option>
-                    <option value="tecnologica">Tecnologica</option>
-                    <option value="emocional">Emocional</option>
+                <label for="data">Tipo dependencia</label>
+                <select id="dependencia" name="dependencia" v-model="id_dependencia" required>
+                    <option v-for="dependencia in tipo_depencia.dependencia" :key="dependencia" :value="dependencia.id_dependencia">
+                        {{ dependencia.id_dependencia }} - {{ dependencia.nome_dependencia }} 
+                    </option>
                 </select>
             </div>
 
@@ -41,36 +39,18 @@
 
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="text" name="email" placeholder="Digite o seu e-mail"  v-model="email">
+                <input type="text" name="email" placeholder="Digite o seu e-mail" v-model="email">
             </div>
 
             <div class="form-group">
                 <label for="senha">Senha</label>
-                <input type="password" name="senha" placeholder="Digite a sua senha"  v-model="senha">
+                <input type="password" name="senha" placeholder="Digite a sua senha" v-model="senha">
             </div>
 
             <div class="form-group" id="imagem">
                 <label for="imagem">Adicionar Imagem:</label>
                 <input type="file" id="imagem" name="imagem">
             </div>
-
-            <h2>Cadastrar Acompanhante</h2>
-
-            <div class="form-group" id="acomp_nome_completo">
-                <label for="acomp_nome">Nome Completo</label>
-                <input type="text" id="acomp_nome" name="acomp_nome" placeholder="Digite o nome completo do acompanhante">
-            </div>
-    
-            <div class="form-group" id="acomp_email">
-                <label for="acomp_email">E-mail</label>
-                <input type="email" id="acomp_email" name="acomp_email" placeholder="Digite o e-mail do acompanhante">
-            </div>
-    
-            <div class="form-group" id="acomp_senha">
-                <label for="acomp_senha">Senha</label>
-                <input type="password" id="acomp_senha" name="acomp_senha" placeholder="Digite a senha do acompanhante">
-            </div>
-    
             <button type="submit" class="btn_cadastrar" click="cadastrarusuario">Cadastrar</button>
 
         </form>
@@ -102,7 +82,8 @@ h1 {
 form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px; /* Ajuste o espaço entre os campos */
+    gap: 20px;
+    /* Ajuste o espaço entre os campos */
     align-items: start;
 }
 
@@ -112,10 +93,13 @@ form {
 }
 
 .form-group label {
-    margin-bottom: 10px; /* Ajuste a margem se necessário */
+    margin-bottom: 10px;
+    /* Ajuste a margem se necessário */
 }
 
-.form-group input, select, textarea {
+.form-group input,
+select,
+textarea {
     width: 100%;
     padding: 10px;
     color: white;
@@ -123,7 +107,8 @@ form {
     border-radius: 4px;
     background-color: #110033;
     font-family: 'Montserrat', sans-serif;
-    box-sizing: border-box; /* Garantir que padding e border não aumentem o tamanho total */
+    box-sizing: border-box;
+    /* Garantir que padding e border não aumentem o tamanho total */
     resize: none;
 }
 
@@ -131,7 +116,11 @@ form {
     color: white;
 }
 
-#tipodependencia, #metas, #imagem, #acomp_nome_completo, #datadenascimento {
+#tipodependencia,
+#metas,
+#imagem,
+#acomp_nome_completo,
+#datadenascimento {
     grid-column: 1 / -1;
 }
 
@@ -152,7 +141,6 @@ h2 {
     width: 100%;
     margin-top: 10px;
 }
-
 </style>
 
 <script>
@@ -161,31 +149,48 @@ import Swal from 'sweetalert2'
 import axios from 'axios';
 
 export default {
-    name:'CadastrarView',
-    data(){
-        return{
-            nome:'',
-            email:'',
-            senha:'',
-            data_nascimento:'',
-            genero:''
+    name: 'CadastrarView',
+    data() {
+        return {
+            nome: '',
+            email: '',
+            senha: '',
+            data_nascimento: '',
+            genero: '',
+            tipo_depencia: [],
+            id_dependencia: '',
         }
     },
-methods:{
-    async cadastro(){
-        await axios.post("http://localhost:3000/usuario/novoUsuario", {
-            usuario:{
-                nome:this.nome,
-                email:this.email,
-                senha:this.senha,
-                data_nascimento:this.data_nascimento,
-                genero:this.genero
-            }
-        }).then(response =>{
-            console.log(response.status)
-            console.log(response)
-            router.push('/')
-        }).catch(Error =>{
+    methods: {
+        async get() {
+            await axios.get("http://localhost:3000/usuario/dependencias").then(response => {
+                this.tipo_depencia = response.data
+                console.log(this.tipo_depencia)
+            }).catch(Error => {
+                console.error(Error)
+            })
+        },
+        async cadastro() {
+            await axios.post("http://localhost:3000/usuario/novoUsuario", {
+                usuario: {
+                    nome: this.nome,
+                    email: this.email,
+                    senha: this.senha,
+                    data_nascimento: this.data_nascimento,
+                    genero: this.genero,
+                    dependencia: this.id_dependencia
+                }
+            }).then(response => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Usuário cadastrado com sucesso',
+                    text: 'Seja muito bem vindo! Vamos conseguir juntos',
+                    timer: 4000,
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                })
+                router.push('/')
+            }).catch(Error => {
                 console.error(Error);
                 Swal.fire({
                     icon: 'error',
@@ -194,6 +199,10 @@ methods:{
                 })
             })
         }
+    },
+    mounted() {
+        this.get();
     }
 }
+
 </script>

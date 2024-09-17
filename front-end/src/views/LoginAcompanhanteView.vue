@@ -25,7 +25,9 @@ body {
     align-items: center;
     background-color: #110033;
 }
-
+form{
+    display: block;
+}
 
 .container_login {
     width: 100vw;
