@@ -51,7 +51,7 @@ export default {
 
         // Contagem dos valores "SIM", "NÃO" e "PARCIALMENTE"
         const simCount = this.contarStatus('Sim');
-        const naoCount = this.contarStatus('Não');
+        const naoCount = this.contarStatus('Nao');
         const parcialmenteCount = this.contarStatus('Parcialmente');
 
         console.log('Dados para o gráfico:', { simCount, naoCount, parcialmenteCount });
