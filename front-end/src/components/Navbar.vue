@@ -1,9 +1,9 @@
 <template>
-    <header>
+  <header>
     <nav class="navbar">
       <div class="logo">
         <h1><span class="day">Day</span><span class="one">One</span></h1>
-    </div>
+      </div>
       <ul class="nav-links">
         <router-link to="/dashboard">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
@@ -13,26 +13,33 @@
           Dashboard
         </router-link>
         <router-link to="/progresso">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
-            <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z"/>
-            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+            class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+            <path
+              d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z" />
+            <path
+              d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708" />
           </svg>
           Registrar Progresso
         </router-link>
         <router-link to="/cadAcompanhante">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
-            <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z"/>
-            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+            class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+            <path fill-rule="evenodd"
+              d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5" />
           </svg>
           Cadastrar Acompanhante
         </router-link>
         <router-link to="/podcasts">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-music-note-list" viewBox="0 0 16 16">
-              <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2"/>
-              <path fill-rule="evenodd" d="M12 3v10h-1V3z"/>
-              <path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1z"/>
-              <path fill-rule="evenodd" d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5"/>
-            </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+            class="bi bi-music-note-list" viewBox="0 0 16 16">
+            <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2" />
+            <path fill-rule="evenodd" d="M12 3v10h-1V3z" />
+            <path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1z" />
+            <path fill-rule="evenodd"
+              d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5" />
+          </svg>
           Podcasts
         </router-link>
       </ul>
@@ -46,79 +53,79 @@
 
 <style scoped>
 header {
-    background-color: #180047;
-    box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.10);
-    padding: 15px;
+  background-color: #180047;
+  box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.10);
+  padding: 15px;
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
 }
 
 .logo a {
-    font-size: 24px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: bold;
+  font-size: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .day {
-    color: #E0E1DD;
+  color: #E0E1DD;
 }
 
 .one {
-    color: #9d4edd;
+  color: #9d4edd;
 }
 
 .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 32px;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  padding: 0;
+  margin: 0;
 }
 
 .navbar a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 8px 12px;
-    border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 4px;
 }
 
 .navbar li a:hover {
-    background-color: #3c096c;
+  background-color: #3c096c;
 }
 
 .botoes_navbar {
-    display: flex;
-    gap: 16px;
+  display: flex;
+  gap: 16px;
 }
 
 .btn {
-    color: #fff;
-    border: 1px solid #5a189a;
-    font-size: 16px;
-    padding: 6px 16px;
-    border-radius: 4px;
-    text-decoration: none;
+  color: #fff;
+  border: 1px solid #5a189a;
+  font-size: 16px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  text-decoration: none;
 }
 
 .btn:hover {
-    background-color: #5a189a;
+  background-color: #5a189a;
 }
 
 .btn_sair {
-    color: #fff;
-    background-color: #180047;
-    border: 1px solid #5a189a;
-    font-size: 16px;
-    padding: 6px 16px;
-    border-radius: 4px;
-    text-decoration: none;
+  color: #fff;
+  background-color: #180047;
+  border: 1px solid #5a189a;
+  font-size: 16px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  text-decoration: none;
 }
 
 .btn_sair:hover {
@@ -161,13 +168,13 @@ header {
 import router from '@/router';
 
 export default {
-    name: 'dashboard',
-    methods:{
-      async sair(){
-        sessionStorage.removeItem('dados');
-        this.dados = JSON.parse(localStorage.getItem('dados_acomp'));
-        router.push('/')
-      }
+  name: 'dashboard',
+  methods: {
+    async sair() {
+      sessionStorage.removeItem('dados');
+      this.dados = JSON.parse(localStorage.getItem('dados_acomp'));
+      router.push('/')
     }
   }
+}
 </script>
