@@ -1,43 +1,28 @@
 <template>
+    <Navbar />
+
     <div class="form_alterardados" v-for="usuario in dado" :key="usuario.usuario">
         <h1>Alterar Dados</h1>
-        <form>
+        <form @submit.prevent="alterarDados">
             <div class="form-group">
                 <label for="nome">Nome Completo</label>
-                <input type="text" name="nome" placeholder="Digite o seu nome completo" :value="usuario.usuario[0].nome">
+                <input type="text" name="nome" placeholder="Digite o seu nome completo"  v-model="usuario.usuario[0].nome">
             </div>
             <div class="form-group">
                 <label for="" >Gênero</label>
-                <select name="genero" id="genero" >
+                <select name="genero" id="genero" v-model="genero">
                     <option value="homem">Homem</option>
                     <option value="mulher">Mulher</option>
                     <option value="naobinario">Não-binário</option>
                     <option value="outro">Outro</option>
                 </select>
             </div>
-
-            <div class="form-group" id="tipodependencia">
-                <label for="dependencia">Tipo de Dependência</label>
-                <select name="dependencia" id="dependencia">
-                    <option value="alcool">Álcool</option>
-                    <option value="drogas">Drogas</option>
-                    <option value="jogos">Jogos</option>
-                    <option value="tecnologica">Tecnologica</option>
-                    <option value="emocional">Emocional</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="text" name="email" placeholder="Digite o seu e-mail" :value="usuario.usuario[0].email">
-            </div>
-
             <div class="form-group">
                 <label for="senha">Senha</label>
-                <input type="password" name="senha" placeholder="Digite a sua senha">
+                <input type="password" name="senha" placeholder="Digite a sua senha" v-model="senha">
             </div>
     
-            <button type="submit" class="btn_alterardados" click="">Alterar Dados</button>
+            <button type="submit" class="btn_alterardados" click="alterarDados">Alterar Dados</button>
 
         </form>
     </div>
@@ -156,9 +141,12 @@ h2 {
 import router from '@/router';
 import Swal from 'sweetalert2'
 import axios from 'axios';
-
+import Navbar from '@/components/Navbar.vue';
 export default {
     name:'AlterarDadosView',
+    components:{
+        Navbar
+    },
     data(){
         return{
             dados: [],
@@ -166,16 +154,38 @@ export default {
             nome:'',
             email:'',
             senha:'',
-            data_nascimento:'',
             genero:'',
-            dependencia:'',
-            metas:'',
-            acomp_nome:'',
-            acomp_email:'',
-            acomp_senha:''
         }
     },
 methods:{
+    async alterarDados(){
+        this.dados = JSON.parse(localStorage.getItem('dados'));
+        const email = this.dados.usuario[0].email;
+
+        await axios.post("http://localhost:3000/usuario/updateUser", {
+            usuario:{
+                nome:this.nome,
+                email: email,
+                senha:this.senha,
+                genero:this.genero
+            }
+        }).then(response =>{
+            console.log(response)
+            Swal.fire({
+                title: "Dados alterados com sucesso!",
+                text: "Seus dados foram alterados com sucesso",
+                icon: "success"
+            });
+            router.push('/dashboard')
+        }).catch(Error =>{
+            Swal.fire({
+                title: "Erro!",
+                text: "Erro",
+                icon: "error"
+            });
+            console.error(Error);
+        })
+    },
     async get() {
         this.dados = JSON.parse(localStorage.getItem('dados_acomp'));
         const email = this.dados.user.acompanhado;

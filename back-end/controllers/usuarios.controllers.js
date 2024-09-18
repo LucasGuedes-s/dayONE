@@ -28,27 +28,29 @@ async function loginUser(req, res) {
   }
 }
 async function updateUser(req, res, next){
-  const { email, nome, data_nascimento, genero } = req.body.usuario;
-  const senha = bcrypt.hash(req.body.usuario.senha)
-  const status = true
-
+  const { email, nome, genero } = req.body.usuario;
+  console.log(req.body);
+  
+  // Corrigindo o uso do bcrypt para hash assíncrono
+  const senha = await bcrypt.hash(req.body.usuario.senha, 10);
+  const status = true;
+  
   try {
     const usuarioAtualizado = await pool.query(
       `UPDATE usuario 
-       SET email = $1, nome = $2, senha = $3, data_nascimento = $4, gênero = $5, status = $6
+       SET email = $1, nome = $2, senha = $3, gênero = $4, status = $5
        WHERE email = $1
        RETURNING *`,
-      [email, nome, senha, data_nascimento, genero, status, email]
+      [email, nome, senha, genero, status]
     );
     
-    res.status(200).json({ message: 'Usuário alterado com sucesso', usuario: usuarioAtualizado.rows[0] });
+    return res.status(200).json({ usuario: usuarioAtualizado.rows[0] });
 
   } catch (err) {
       console.error(err.message);
       res.status(500).json({ message: 'Erro ao realizar update o usuário' });
   }    
 }
-
 async function getUser(req, res, next){
   try {
       const email = req.query.email
